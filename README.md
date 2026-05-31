@@ -41,7 +41,40 @@
 ### Step 14: 
   Stop
 # Program:
+~~~
+#include <stdio.h>
+
+int main() {
+    int d, m, y, maxDay;
+
+    scanf("%d/%d/%d", &d, &m, &y);
+
+    if (y < 1 || m < 1 || m > 12 || d < 1) {
+        printf("Invalid Date");
+        return 0;
+    }
+    if (m == 2) {
+        if ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0))
+            maxDay = 29;
+        else
+            maxDay = 28;
+    } else if (m == 4 || m == 6 || m == 9 || m == 11) {
+        maxDay = 30;
+    } else {
+        maxDay = 31;
+    }
+
+    if (d <= maxDay)
+        printf("Valid Date");
+    else
+        printf("Invalid Date");
+
+    return 0;
+}
+~~~
 # Output:
+<img width="373" height="576" alt="image" src="https://github.com/user-attachments/assets/4f8ffe5c-edc8-4227-81c5-700305b2e306" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -89,7 +122,31 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 13: 
   Stop
 # Program:
+~~~
+#include <stdio.h>
+
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int min(int a, int b) {
+    return (a < b) ? a : b;
+}
+
+int main() {
+    int x, y;
+
+    scanf("%d %d", &x, &y);
+
+    printf("Maximum: %d\n", max(x, y));
+    printf("Minimum: %d\n", min(x, y));
+
+    return 0;
+}
+~~~
 # Output:
+<img width="326" height="426" alt="image" src="https://github.com/user-attachments/assets/aea35da0-8c87-4111-a144-0255425e09d9" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -137,7 +194,31 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+~~~
+#include <stdio.h>
+
+float celsiusToFahrenheit(float c) {
+    return (c * 9 / 5) + 32;
+}
+
+float fahrenheitToCelsius(float f) {
+    return (f - 32) * 5 / 9;
+}
+
+int main() {
+    float c, f;
+
+    scanf("%f %f", &c, &f);
+
+    printf("Celsius to Fahrenheit: %.2f\n", celsiusToFahrenheit(c));
+    printf("Fahrenheit to Celsius: %.2f\n", fahrenheitToCelsius(f));
+
+    return 0;
+}
+~~~
 # Output:
+<img width="332" height="389" alt="image" src="https://github.com/user-attachments/assets/1c1067dd-effb-4da4-9d16-eb1c14837a55" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -185,7 +266,50 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
+~~~
+#include <stdio.h>
+
+void spiralPrint(int a[4][4]) {
+    int top = 0, bottom = 3, left = 0, right = 3;
+
+    while (top <= bottom && left <= right) {
+        for (int i = left; i <= right; i++)
+            printf("%d ", a[top][i]);
+        top++;
+
+        for (int i = top; i <= bottom; i++)
+            printf("%d ", a[i][right]);
+        right--;
+
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--)
+                printf("%d ", a[bottom][i]);
+            bottom--;
+        }
+
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--)
+                printf("%d ", a[i][left]);
+            left++;
+        }
+    }
+}
+
+int main() {
+    int a[4][4];
+
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            scanf("%d", &a[i][j]);
+
+    spiralPrint(a);
+
+    return 0;
+}
+~~~
 # Output:
+<img width="364" height="505" alt="image" src="https://github.com/user-attachments/assets/769c4898-6e1d-44b8-80c4-d33546e98280" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -220,7 +344,45 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
+~~~
+#include <stdio.h>
+#include <ctype.h>
+
+void convert(char str[]) {
+    int i = 0;
+
+    if (str[0] != '\0' && str[0] != ' ')
+        str[0] = toupper(str[0]);
+
+    while (str[i] != '\0') {
+        if (str[i] == ' ') {
+            if (str[i - 1] != ' ')
+                str[i - 1] = toupper(str[i - 1]);
+            if (str[i + 1] != '\0' && str[i + 1] != ' ')
+                str[i + 1] = toupper(str[i + 1]);
+        }
+        i++;
+    }
+
+    if (i > 0 && str[i - 1] != ' ')
+        str[i - 1] = toupper(str[i - 1]);
+}
+
+int main() {
+    char str[100];
+
+    scanf("%[^\n]", str);
+
+    convert(str);
+
+    printf("%s", str);
+
+    return 0;
+}
+~~~
 # Output:
+<img width="411" height="529" alt="image" src="https://github.com/user-attachments/assets/518f0779-c673-42dd-b1c3-ac11dfbf6225" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
